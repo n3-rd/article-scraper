@@ -4,6 +4,7 @@ const express = require('express')
 const app = express();
 
 app.get('/', (req, res)=>{
+  cont url = req.qurt
          const options = {
 	method: 'GET',
 	headers: {
@@ -14,6 +15,10 @@ app.get('/', (req, res)=>{
 
 fetch('https://article-extractor2.p.rapidapi.com/article/parse?url=https://westafricaweekly.substack.com/p/cornflakes-for-jihad-the-boko-haram?s=r', options)
 	.then(response => response.json())
-	.then(response => console.log(response))
+	.then(response => {console.log(response)
+                    res.send(response)
+})
 	.catch(err => console.error(err));
 })
+
+app.listen(process.env.PORT || 8000);
