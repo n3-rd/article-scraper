@@ -1,7 +1,16 @@
 const fetch = require('node-fetch')
+const cors = require("cors");
 const express = require('express')
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(express.json());
+app.use(express.static("public"));
 
 app.get('/', (req, res)=>{
   const url = req.query.url
