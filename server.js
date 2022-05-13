@@ -1,23 +1,19 @@
-import express from 'express';
-import { extract } from 'article-parser'
+const fetch = require('node-fetch')
+const express = require('express')
 
 const app = express();
-app.get('/', (req, res) => {
-    const getArticle = async (url) => {
-        try {
-          const article = await extract(url)
-          return article
-          res.send(article);
-          console.log(article);
-        } catch (err) {
-          console.trace(err)
-          return null
-        }
-      }
-      
-      getArticle('https://www.binance.com/en/blog/markets/15-new-years-resolutions-that-will-make-2022-your-best-year-yet-421499824684903249&apikey=demo-orePhhidnWKWPvF8EYKap7z55cN')
+
+app.get('/', (req, res)=>{
+         const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Host': 'article-extractor2.p.rapidapi.com',
+		'X-RapidAPI-Key': '4d28f8767fmsh77c6703eafddd9fp1dc387jsn58cdd45aac27'
+	}
+};
+
+fetch('https://article-extractor2.p.rapidapi.com/article/parse?url=https://westafricaweekly.substack.com/p/cornflakes-for-jihad-the-boko-haram?s=r', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
 })
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
-// const url = 'https://westafricaweekly.substack.com/p/cornflakes-for-jihad-the-boko-haram?s=r'
-
