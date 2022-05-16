@@ -18,7 +18,7 @@ app.get('/', (req, res)=>{
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Host': 'article-extractor2.p.rapidapi.com',
-		'X-RapidAPI-Key': '4d28f8767fmsh77c6703eafddd9fp1dc387jsn58cdd45aac27'
+		'X-RapidAPI-Key': process.env.scrapperAPIKey
 	}
 };
 
